@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# 备份文件（修改源码时自动生成的 .bak 备份）
+*.bak
+
+# web-builder 工作目录（构建规划文件，不入库）
+.web_builder/
+
+# 日志与临时文件
+*.log
