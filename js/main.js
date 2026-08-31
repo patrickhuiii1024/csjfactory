@@ -1,6 +1,6 @@
 /* CSJ site - shared interactions */
 /* 全局 Worker 地址：部署在线询盘 Worker 后在此填写（main.js 与 chat-widget.js 共用） */
-window.CF_WORKER_URL = "";
+window.CF_WORKER_URL = "https://csj-inquiry.b6zytnm9wg.workers.dev";
 
 (function () {
   "use strict";
