@@ -53,6 +53,11 @@
   var userMsg = document.getElementById("chatUserMsg");
   var reply = document.getElementById("chatReply");
 
+  var bodyEl = panel.querySelector(".chat-widget__body");
+  var scrollToBottom = function () {
+    if (bodyEl) bodyEl.scrollTop = bodyEl.scrollHeight;
+  };
+
   var getMsg = function (key, fallback) {
     try {
       if (window.I18N && window.csjLang && window.I18N[window.csjLang][key]) {
@@ -119,6 +124,7 @@
     /* 回显用户消息气泡 */
     userMsg.textContent = message + (email ? " (" + email + ")" : "");
     userMsg.classList.remove("chat-msg--hidden");
+    scrollToBottom();
 
     var sendBtn = form.querySelector(".chat-widget__send");
     if (sendBtn) sendBtn.disabled = true;
@@ -126,6 +132,7 @@
     if (!WORKER_URL) {
       setText(reply, "chat.error", "Sorry, something went wrong.");
       reply.classList.remove("chat-msg--hidden");
+      scrollToBottom();
       if (sendBtn) sendBtn.disabled = false;
       return;
     }
@@ -151,6 +158,7 @@
       .then(function (result) {
         setText(reply, result.ok ? "chat.sent" : "chat.error", result.ok ? "Thanks!" : "Sorry, something went wrong.");
         reply.classList.remove("chat-msg--hidden");
+        scrollToBottom();
         if (result.ok) {
           emailInput.value = "";
           msgInput.value = "";
@@ -159,6 +167,7 @@
       .catch(function () {
         setText(reply, "chat.error", "Sorry, something went wrong.");
         reply.classList.remove("chat-msg--hidden");
+        scrollToBottom();
       })
       .finally(function () {
         if (sendBtn) sendBtn.disabled = false;
